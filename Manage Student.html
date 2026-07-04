@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* Reset */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* Body */
+
+body{
+    background:#eef2f7;
+    padding:30px;
+}
+
+/* Container */
+
+.container{
+    width:95%;
+    margin:auto;
+}
+
+/* Heading */
+
+h1{
+    text-align:center;
+    color:#2c3e50;
+    margin-bottom:25px;
+}
+
+/* Form Box */
+
+.form-box{
+
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+    margin-bottom:30px;
+
+}
+
+.form-box h2{
+
+    text-align:center;
+    color:#34495e;
+    margin-bottom:20px;
+
+}
+
+/* Labels */
+
+label{
+
+    display:block;
+    margin-top:15px;
+    margin-bottom:5px;
+    font-weight:bold;
+    color:#444;
+
+}
+
+/* Inputs */
+
+input,
+select{
+
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    font-size:15px;
+    outline:none;
+    transition:.3s;
+
+}
+
+input:focus,
+select:focus{
+
+    border-color:#3498db;
+
+}
+
+/* Rules */
+
+.rule{
+
+    color:#777;
+    font-size:13px;
+    margin-top:6px;
+    margin-bottom:10px;
+    line-height:22px;
+
+}
+
+/* Buttons */
+
+.buttons{
+
+    margin-top:25px;
+    display:flex;
+    gap:15px;
+
+}
+
+button{
+
+    flex:1;
+    padding:12px;
+    border:none;
+    border-radius:6px;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+
+}
+
+/* Save */
+
+.buttons button:first-child{
+
+    background:#27ae60;
+
+}
+
+.buttons button:first-child:hover{
+
+    background:#219150;
+
+}
+
+/* Reset */
+
+.buttons button:last-child{
+
+    background:#e74c3c;
+
+}
+
+.buttons button:last-child:hover{
+
+    background:#c0392b;
+
+}
+
+/* Search */
+
+#search{
+
+    width:300px;
+    margin-bottom:20px;
+
+}
+
+/* Table */
+
+.table-box{
+
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#3498db;
+    color:white;
+    padding:12px;
+
+}
+
+td{
+
+    text-align:center;
+    padding:12px;
+    border-bottom:1px solid #ddd;
+
+}
+
+tr:hover{
+
+    background:#f5f5f5;
+
+}
+
+/* Edit Button */
+
+.edit{
+
+    background:#f39c12;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    border-radius:5px;
+    cursor:pointer;
+    margin-right:5px;
+
+}
+
+/* Delete Button */
+
+.delete{
+
+    background:#e74c3c;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    border-radius:5px;
+    cursor:pointer;
+
+}
+
+.edit:hover{
+
+    background:#d68910;
+
+}
+
+.delete:hover{
+
+    background:#c0392b;
+
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+table{
+
+display:block;
+overflow-x:auto;
+
+}
+
+.buttons{
+
+flex-direction:column;
+
+}
+
+#search{
+
+width:100%;
+
+}
+
+}
+    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Students</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Manage Students</h1>
+
+<div class="form-box">
+
+<h2>Add Student</h2>
+
+<input type="hidden" id="index">
+
+<label>Student Name</label>
+<input type="text" id="name" placeholder="Enter Student Name">
+
+<label>Class</label>
+<input type="text" id="class" placeholder="Enter Class">
+
+<label>Date of Birth</label>
+<input type="date" id="dob">
+
+<label>Mobile Number</label>
+<input type="text" id="mobile" maxlength="10" placeholder="Enter Mobile Number">
+
+<label>Group</label>
+
+<select id="group">
+
+<option value="">Select Group</option>
+
+<option>CSE</option>
+
+<option>ECE</option>
+
+<option>EEE</option>
+
+<option>IT</option>
+
+<option>MECH</option>
+
+<option>CIVIL</option>
+
+</select>
+
+<label>Username</label>
+
+<input type="text" id="username" placeholder="Enter Username">
+
+<p class="rule">
+Username must:
+<br>
+✔ Start with a letter
+<br>
+✔ 5-15 characters
+<br>
+✔ Only letters, numbers and _
+</p>
+
+<label>Password</label>
+
+<input type="password" id="password" placeholder="Enter Password">
+
+<p class="rule">
+Password must contain:
+<br>
+✔ 8 characters minimum
+<br>
+✔ One uppercase letter
+<br>
+✔ One lowercase letter
+<br>
+✔ One number
+<br>
+✔ One special character
+</p>
+
+<label>Confirm Password</label>
+
+<input type="password" id="confirm">
+
+<div class="buttons">
+
+<button onclick="saveStudent()">Save Student</button>
+
+<button onclick="clearForm()">Reset</button>
+
+</div>
+
+</div>
+
+<div class="table-box">
+
+<input
+type="text"
+id="search"
+placeholder="Search Student..."
+onkeyup="searchStudent()">
+
+<div class="controls" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center;">
+    <button class="btn" onclick="exportJSON()" style="padding:8px 10px;background:#3498db;color:#fff;border-radius:6px;border:none;cursor:pointer;">Export JSON</button>
+    <button class="btn" onclick="document.getElementById('importFile').click()" style="padding:8px 10px;background:#2ecc71;color:#fff;border-radius:6px;border:none;cursor:pointer;">Import JSON</button>
+    <input type="file" id="importFile" accept="application/json" style="display:none" onchange="importJSON(event)">
+    <button class="btn" onclick="exportCSV()" style="padding:8px 10px;background:#f39c12;color:#fff;border-radius:6px;border:none;cursor:pointer;">Export CSV</button>
+    <button class="btn" onclick="clearAllStudents()" style="padding:8px 10px;background:#e74c3c;color:#fff;border-radius:6px;border:none;cursor:pointer;">Clear All</button>
+    <div id="undoToast" style="margin-left:auto;display:none;background:#444;color:#fff;padding:8px 12px;border-radius:6px;">Deleted — <a href="#" onclick="undoDelete()" style="color:#ffd700;text-decoration:underline;">Undo</a></div>
+    <div id="studentCount" style="margin-left:8px;color:#333;font-weight:600;"></div>
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+
+<th>Class</th>
+
+<th>DOB</th>
+
+<th>Mobile</th>
+
+<th>Group</th>
+
+<th>Username</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="studentTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+
+// Display on load
+displayStudents();
+
+function saveStudent() {
+
+    let index = document.getElementById("index").value;
+
+    let name = document.getElementById("name").value;
+    let className = document.getElementById("class").value;
+    let dob = document.getElementById("dob").value;
+    let mobile = document.getElementById("mobile").value;
+    let group = document.getElementById("group").value;
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    let confirm = document.getElementById("confirm").value;
+
+    // ---------------- VALIDATIONS ---------------- //
+
+    let usernamePattern = /^[A-Za-z][A-Za-z0-9_]{4,14}$/;
+
+    let passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    let mobilePattern = /^[0-9]{10}$/;
+
+    if (!name || !className || !dob || !mobile || !group || !username || !password || !confirm) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    if (!mobilePattern.test(mobile)) {
+        alert("Invalid mobile number (must be 10 digits)");
+        return;
+    }
+
+    if (!usernamePattern.test(username)) {
+        alert("Invalid username format");
+        return;
+    }
+
+    if (!passwordPattern.test(password)) {
+        alert("Weak password. Please follow rules.");
+        return;
+    }
+
+    if (password !== confirm) {
+        alert("Passwords do not match");
+        return;
+    }
+
+    // Check duplicate username
+    let exists = students.some((s, i) => s.username === username && i != index);
+
+    if (exists) {
+        alert("Username already exists");
+        return;
+    }
+
+    let student = {
+        name,
+        className,
+        dob,
+        mobile,
+        group,
+        username,
+        password
+    };
+
+    // ---------------- ADD OR UPDATE ---------------- //
+
+    if (index === "") {
+        students.push(student);
+    } else {
+        students[index] = student;
+    }
+
+    localStorage.setItem("students", JSON.stringify(students));
+
+    displayStudents();
+    clearForm();
+}
+
+function displayStudents(list = students) {
+
+    let table = "";
+
+    list.forEach((s, index) => {
+
+        table += `
+        <tr>
+            <td>${s.name}</td>
+            <td>${s.className}</td>
+            <td>${s.dob}</td>
+            <td>${s.mobile}</td>
+            <td>${s.group}</td>
+            <td>${s.username}</td>
+            <td>
+                <button class="edit" onclick="editStudent(${index})">Edit</button>
+                <button class="delete" onclick="deleteStudent(${index})">Delete</button>
+            </td>
+        </tr>
+        `;
+    });
+
+    document.getElementById("studentTable").innerHTML = table;
+}
+
+function editStudent(index) {
+
+    let s = students[index];
+
+    document.getElementById("index").value = index;
+    document.getElementById("name").value = s.name;
+    document.getElementById("class").value = s.className;
+    document.getElementById("dob").value = s.dob;
+    document.getElementById("mobile").value = s.mobile;
+    document.getElementById("group").value = s.group;
+    document.getElementById("username").value = s.username;
+    document.getElementById("password").value = s.password;
+    document.getElementById("confirm").value = s.password;
+}
+
+function deleteStudent(index) {
+
+    if (confirm("Are you sure you want to delete this student?")) {
+
+        students.splice(index, 1);
+
+        localStorage.setItem("students", JSON.stringify(students));
+
+        displayStudents();
+    }
+}
+
+function clearForm() {
+
+    document.getElementById("index").value = "";
+    document.getElementById("name").value = "";
+    document.getElementById("class").value = "";
+    document.getElementById("dob").value = "";
+    document.getElementById("mobile").value = "";
+    document.getElementById("group").value = "";
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("confirm").value = "";
+}
+
+function searchStudent() {
+
+    let text = document.getElementById("search").value.toLowerCase();
+
+    let filtered = students.filter(s =>
+        s.name.toLowerCase().includes(text) ||
+        s.username.toLowerCase().includes(text) ||
+        s.className.toLowerCase().includes(text)
+    );
+
+    displayStudents(filtered);
+}
+
+// ----- Additional utilities ----- //
+let lastDeleted = null;
+let undoTimer = null;
+let sortState = { key: null, asc: true };
+
+function showCount() {
+    document.getElementById('studentCount').textContent = `${students.length} student(s)`;
+}
+
+// update displayStudents to show count and respect sorting
+const _displayStudents = displayStudents;
+displayStudents = function(list = students) {
+    // apply sorting if requested
+    if (sortState.key) {
+        list = [...list].sort((a,b)=>{
+            let A = (a[sortState.key]||'').toString().toLowerCase();
+            let B = (b[sortState.key]||'').toString().toLowerCase();
+            if (A < B) return sortState.asc ? -1 : 1;
+            if (A > B) return sortState.asc ? 1 : -1;
+            return 0;
+        });
+    }
+    _displayStudents(list);
+    showCount();
+}
+
+function exportJSON() {
+    const data = JSON.stringify(students, null, 2);
+    const blob = new Blob([data], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'students.json';
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+function importJSON(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const parsed = JSON.parse(e.target.result);
+            if (!Array.isArray(parsed)) throw new Error('Invalid format');
+            students = parsed;
+            localStorage.setItem('students', JSON.stringify(students));
+            displayStudents();
+            alert('Imported ' + students.length + ' students');
+        } catch (err) {
+            alert('Failed to import JSON: ' + err.message);
+        }
+    };
+    reader.readAsText(file);
+    // clear input
+    event.target.value = '';
+}
+
+function exportCSV() {
+    if (!students.length) { alert('No students to export'); return; }
+    const keys = ['name','className','dob','mobile','group','username'];
+    const header = keys.join(',') + '\n';
+    const rows = students.map(s => keys.map(k => '"' + (s[k] ? s[k].toString().replace(/"/g,'""') : '') + '"').join(',')).join('\n');
+    const csv = header + rows;
+    const blob = new Blob([csv], {type: 'text/csv'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'students.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+function deleteStudent(index) {
+    if (!confirm('Are you sure you want to delete this student?')) return;
+    lastDeleted = { item: students[index], index };
+    students.splice(index,1);
+    localStorage.setItem('students', JSON.stringify(students));
+    displayStudents();
+    showUndoToast();
+}
+
+function showUndoToast() {
+    const t = document.getElementById('undoToast');
+    t.style.display = 'block';
+    if (undoTimer) clearTimeout(undoTimer);
+    undoTimer = setTimeout(()=>{ t.style.display = 'none'; lastDeleted = null; }, 5000);
+}
+
+function undoDelete() {
+    if (!lastDeleted) return;
+    students.splice(lastDeleted.index, 0, lastDeleted.item);
+    localStorage.setItem('students', JSON.stringify(students));
+    displayStudents();
+    lastDeleted = null;
+    document.getElementById('undoToast').style.display = 'none';
+    if (undoTimer) clearTimeout(undoTimer);
+}
+
+function clearAllStudents() {
+    if (!students.length) { alert('No students to clear'); return; }
+    if (!confirm('This will remove ALL students. Continue?')) return;
+    students = [];
+    localStorage.removeItem('students');
+    displayStudents();
+}
+
+// Sorting: allow clicking on table headers to sort
+document.addEventListener('click', function(e){
+    if (!e.target.matches('th')) return;
+    const txt = e.target.textContent.trim().toLowerCase();
+    const map = { 'name':'name', 'class':'className', 'dob':'dob', 'mobile':'mobile', 'group':'group', 'username':'username' };
+    if (!map[txt]) return;
+    const key = map[txt];
+    if (sortState.key === key) sortState.asc = !sortState.asc; else { sortState.key = key; sortState.asc = true; }
+    displayStudents();
+});
+
+// initial count display
+showCount();
+</script>
+
+</body>
+</html>

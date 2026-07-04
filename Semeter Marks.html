@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reports</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+}
+
+header{
+    background:#0A192F;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.container{
+    width:90%;
+    max-width:900px;
+    margin:40px auto;
+}
+
+.report-box{
+    background:#fff;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.report-box h2{
+    color:#0A192F;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table th,
+table td{
+    border:1px solid #ddd;
+    padding:12px;
+    text-align:center;
+}
+
+table th{
+    background:#007BFF;
+    color:white;
+}
+
+.no-data{
+    text-align:center;
+    color:#777;
+    padding:25px;
+    font-style:italic;
+}
+
+.btn{
+    display:block;
+    width:180px;
+    margin:30px auto 0;
+    text-align:center;
+    text-decoration:none;
+    background:#0A192F;
+    color:white;
+    padding:12px;
+    border-radius:8px;
+}
+
+.btn:hover{
+    background:#007BFF;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+    <h1>Student Reports</h1>
+</header>
+
+<div class="container">
+
+<div class="report-box">
+
+<h2>Reports</h2>
+
+<table>
+    <tr>
+        <th>Subject</th>
+        <th>Marks</th>
+        <th>Grade</th>
+        <th>Remarks</th>
+    </tr>
+
+    <tr>
+        <td colspan="4" class="no-data">
+            No reports available.
+        </td>
+    </tr>
+
+</table>
+
+<a href="student-profile.html" class="btn">Back to Profile</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

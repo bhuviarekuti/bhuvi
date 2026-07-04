@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendance Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#eef2f7;
+    padding:30px;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:30px;
+    color:#333;
+}
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.card h2{
+    text-align:center;
+    margin-bottom:20px;
+    color:#444;
+}
+
+/* Circular Progress */
+
+.circle-box{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.circle{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:conic-gradient(#4CAF50 0% 90%,#ddd 90% 100%);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.inner{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    background:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:35px;
+    font-weight:bold;
+    color:#4CAF50;
+}
+
+/* Subject Progress */
+
+.subject{
+    margin-bottom:18px;
+}
+
+.subject span{
+    font-weight:bold;
+}
+
+.progress{
+    width:100%;
+    background:#ddd;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:8px;
+}
+
+.fill{
+    height:20px;
+    text-align:right;
+    color:white;
+    padding-right:10px;
+    line-height:20px;
+}
+
+.java{
+    width:95%;
+    background:#4CAF50;
+}
+
+.python{
+    width:89%;
+    background:#2196F3;
+}
+
+.dbms{
+    width:82%;
+    background:#FF9800;
+}
+
+.os{
+    width:76%;
+    background:#9C27B0;
+}
+
+/* Summary */
+
+.summary{
+    display:flex;
+    justify-content:space-around;
+    text-align:center;
+}
+
+.box{
+    background:#f4f6f9;
+    padding:20px;
+    border-radius:10px;
+    width:45%;
+}
+
+.box h3{
+    color:#555;
+}
+
+.box h1{
+    margin-top:10px;
+    color:#4CAF50;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Student Attendance Dashboard</h1>
+
+<div class="dashboard">
+
+<!-- Circular Attendance -->
+<div class="card">
+
+<h2>Overall Attendance</h2>
+
+<div class="circle-box">
+<div class="circle">
+<div class="inner">90%</div>
+</div>
+</div>
+
+</div>
+
+<!-- Weekly Chart -->
+<div class="card">
+
+<h2>Weekly Attendance</h2>
+
+<canvas id="weekChart"></canvas>
+
+</div>
+
+<!-- Monthly Trend -->
+<div class="card">
+
+<h2>Monthly Attendance Trend</h2>
+
+<canvas id="monthChart"></canvas>
+
+</div>
+
+<!-- Subject Wise -->
+<div class="card">
+
+<h2>Subject-wise Attendance</h2>
+
+<div class="subject">
+<span>Java</span>
+<div class="progress">
+<div class="fill java">95%</div>
+</div>
+</div>
+
+<div class="subject">
+<span>Python</span>
+<div class="progress">
+<div class="fill python">89%</div>
+</div>
+</div>
+
+<div class="subject">
+<span>DBMS</span>
+<div class="progress">
+<div class="fill dbms">82%</div>
+</div>
+</div>
+
+<div class="subject">
+<span>Operating System</span>
+<div class="progress">
+<div class="fill os">76%</div>
+</div>
+</div>
+
+</div>
+
+<!-- Summary -->
+<div class="card">
+
+<h2>Attendance Summary</h2>
+
+<div class="summary">
+
+<div class="box">
+<h3>Present</h3>
+<h1>165</h1>
+</div>
+
+<div class="box">
+<h3>Absent</h3>
+<h1 style="color:red;">15</h1>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+// Weekly Attendance
+
+new Chart(document.getElementById('weekChart'),{
+
+type:'bar',
+
+data:{
+labels:['Mon','Tue','Wed','Thu','Fri'],
+datasets:[{
+label:'Attendance %',
+data:[90,80,95,88,75],
+backgroundColor:[
+'#4CAF50',
+'#2196F3',
+'#FFC107',
+'#9C27B0',
+'#FF5722'
+]
+}]
+},
+
+options:{
+responsive:true,
+plugins:{
+legend:{
+display:false
+}
+},
+scales:{
+y:{
+beginAtZero:true,
+max:100
+}
+}
+}
+
+});
+
+// Monthly Trend
+
+new Chart(document.getElementById('monthChart'),{
+
+type:'line',
+
+data:{
+
+labels:['Jan','Feb','Mar','Apr','May','Jun'],
+
+datasets:[{
+
+label:'Attendance',
+
+data:[78,82,88,85,91,90],
+
+borderColor:'#4CAF50',
+
+backgroundColor:'rgba(76,175,80,.2)',
+
+fill:true,
+
+tension:.4
+
+}]
+
+},
+
+options:{
+responsive:true,
+scales:{
+y:{
+beginAtZero:true,
+max:100
+}
+}
+}
+
+});
+
+</script>
+
+</body>
+</html>

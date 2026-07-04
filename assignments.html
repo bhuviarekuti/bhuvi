@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <!-- Navigation bar -->
+  <div style="display:flex;justify-content:center;background:#6f42c1;padding:15px;">
+    <a href="student-profile.html" style="color:white;text-decoration:none;padding:12px 20px;margin:0 8px;font-weight:bold;border-radius:5px;">Profile</a>
+    <a href="todo.html" style="color:white;text-decoration:none;padding:12px 20px;margin:0 8px;font-weight:bold;border-radius:5px;">To‑Do</a>
+    <a href="assignments.html" style="color:white;text-decoration:none;padding:12px 20px;margin:0 8px;font-weight:bold;border-radius:5px;">Assignments</a>
+    <a href="timetable.html" style="color:white;text-decoration:none;padding:12px 20px;margin:0 8px;font-weight:bold;border-radius:5px;">Timetable</a>
+    <a href="attendance.html" style="color:white;text-decoration:none;padding:12px 20px;margin:0 8px;font-weight:bold;border-radius:5px;">Attendance</a>
+    <a href="concerns.html" style="color:white;text-decoration:none;padding:12px 20px;margin:0 8px;font-weight:bold;border-radius:5px;">Concerns</a>
+  </div>
+
+  <!-- Assignments content -->
+  <div style="padding:40px;text-align:center;">
+    <h2 style="color:#333;margin-bottom:20px;">My Assignments</h2>
+    <p style="color:#555;">Submit your assignments and view them later.</p>
+
+    <!-- Assignment list -->
+    <table style="margin:auto;border-collapse:collapse;width:90%;max-width:900px;">
+      <tr style="background:#6f42c1;color:white;">
+        <th style="padding:12px;border:1px solid #ddd;">Subject</th>
+        <th style="padding:12px;border:1px solid #ddd;">Assignment</th>
+        <th style="padding:12px;border:1px solid #ddd;">Due Date</th>
+        <th style="padding:12px;border:1px solid #ddd;">Actions</th>
+      </tr>
+      <tr>
+        <td style="padding:12px;border:1px solid #ddd;">Mathematics</td>
+        <td style="padding:12px;border:1px solid #ddd;">Algebra Worksheet</td>
+        <td style="padding:12px;border:1px solid #ddd;">2026-07-10</td>
+        <td style="padding:12px;border:1px solid #ddd;">
+          <button onclick="submitAssignment('Mathematics')" style="padding:6px 10px;background:#28a745;color:white;border:none;border-radius:5px;cursor:pointer;">Submit</button>
+          <button onclick="viewAssignment('Mathematics')" style="padding:6px 10px;background:#007BFF;color:white;border:none;border-radius:5px;cursor:pointer;">View</button>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border:1px solid #ddd;">Science</td>
+        <td style="padding:12px;border:1px solid #ddd;">Lab Report</td>
+        <td style="padding:12px;border:1px solid #ddd;">2026-07-12</td>
+        <td style="padding:12px;border:1px solid #ddd;">
+          <button onclick="submitAssignment('Science')" style="padding:6px 10px;background:#28a745;color:white;border:none;border-radius:5px;cursor:pointer;">Submit</button>
+          <button onclick="viewAssignment('Science')" style="padding:6px 10px;background:#007BFF;color:white;border:none;border-radius:5px;cursor:pointer;">View</button>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border:1px solid #ddd;">English</td>
+        <td style="padding:12px;border:1px solid #ddd;">Essay Writing</td>
+        <td style="padding:12px;border:1px solid #ddd;">2026-07-15</td>
+        <td style="padding:12px;border:1px solid #ddd;">
+          <button onclick="submitAssignment('English')" style="padding:6px 10px;background:#28a745;color:white;border:none;border-radius:5px;cursor:pointer;">Submit</button>
+          <button onclick="viewAssignment('English')" style="padding:6px 10px;background:#007BFF;color:white;border:none;border-radius:5px;cursor:pointer;">View</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    function submitAssignment(subject) {
+      alert("Submitting assignment for " + subject + " (demo only).");
+      // Here you could redirect to a file upload page or form
+      // window.location.href = "submit-assignment.html?subject=" + subject;
+    }
+
+    function viewAssignment(subject) {
+      alert("Viewing assignment for " + subject + " (demo only).");
+      // Here you could redirect to a page showing submitted work
+      // window.location.href = "view-assignment.html?subject=" + subject;
+    }
+  </script>
+</body>
+</html>

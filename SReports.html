@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin - Update Students Only</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    margin:0;
+    background:#f4f6f9;
+}
+
+header{
+    background:#1f2a40;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+
+.container{
+    width:90%;
+    margin:20px auto;
+}
+
+.box{
+    background:white;
+    padding:20px;
+    border-radius:8px;
+    margin-bottom:20px;
+    box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+input{
+    width:22%;
+    padding:10px;
+    margin:5px;
+}
+
+button{
+    padding:10px 15px;
+    background:#1f2a40;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#2c3e60;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#1f2a40;
+    color:white;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+    <h2>Admin Panel - Update Existing Students</h2>
+</header>
+
+<div class="container">
+
+<div class="box">
+    <h3>Update Student Records</h3>
+
+    <input type="text" id="name" placeholder="Enter Student Name">
+    <input type="number" id="attendance" placeholder="Attendance %">
+    <input type="number" id="percentage" placeholder="Percentage">
+    <input type="text" id="performance" placeholder="Performance">
+
+    <button onclick="updateStudent()">Update Student</button>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Attendance</th>
+<th>Percentage</th>
+<th>Performance</th>
+</tr>
+</thead>
+
+<tbody id="table"></tbody>
+
+</table>
+
+</div>
+
+<script>
+
+let students = JSON.parse(localStorage.getItem("students")) || [];
+
+function updateStudent(){
+
+    let name=document.getElementById("name").value.trim();
+    let attendance=document.getElementById("attendance").value;
+    let percentage=document.getElementById("percentage").value;
+    let performance=document.getElementById("performance").value;
+
+    if(name===""){
+        alert("Enter Student Name");
+        return;
+    }
+
+    let student=students.find(s=>s.name.toLowerCase()===name.toLowerCase());
+
+    if(!student){
+        alert("Student Not Found");
+        return;
+    }
+
+    if(attendance!==""){
+        student.attendance=attendance;
+    }
+
+    if(percentage!==""){
+        student.percentage=percentage;
+    }
+
+    if(performance!==""){
+        student.performance=performance;
+    }
+
+    localStorage.setItem("students",JSON.stringify(students));
+
+    document.getElementById("name").value="";
+    document.getElementById("attendance").value="";
+    document.getElementById("percentage").value="";
+    document.getElementById("performance").value="";
+
+    render();
+
+    alert("Student Updated Successfully");
+}
+
+function render(){
+
+    let table=document.getElementById("table");
+
+    table.innerHTML="";
+
+    if(students.length===0){
+        table.innerHTML="<tr><td colspan='4'>No Students Found</td></tr>";
+        return;
+    }
+
+    students.forEach(student=>{
+
+        table.innerHTML+=`
+        <tr>
+            <td>${student.name}</td>
+            <td>${student.attendance || "-"}</td>
+            <td>${student.percentage || "-"}</td>
+            <td>${student.performance || "-"}</td>
+        </tr>
+        `;
+
+    });
+
+}
+
+render();
+
+</script>
+
+</body>
+</html>
